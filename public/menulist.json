@@ -1,0 +1,37 @@
+[
+  {
+    "title": "COMPANY",
+    "texts": [
+      { "text": "About us" },
+      { "text": "Team" },
+      { "text": "Careers" },
+      { "text": "Swiggy Blog" },
+      { "text": "Bug Bounty" },
+      { "text": "Swiggy Super" },
+      { "text": "Swiggy Corporate" },
+      { "text": "Swiggy Instamart" },
+      { "text": "Swiggy Genie" }
+    ]
+  },
+  {
+    "title": "CONTACT",
+    "texts": [
+      { "text": "Help & Support" },
+      { "text": "Partner with us" },
+      { "text": "Ride with us" }
+    ]
+  },
+  {
+    "title": "LEGAL",
+    "texts": [
+      { "text": "Terms & Conditions" },
+      { "text": "Refund & Cancellation" },
+      { "text": "Privacy Policy" },
+      { "text": "Cookie Policy" },
+      { "text": "Offer Terms" },
+      { "text": "Phishing & Fraud" },
+      { "text": "Corporate – Swiggy Money Codes Terms and Conditions" },
+      { "text": "Corporate - Swiggy Discount Voucher Terms and Conditions" }
+    ]
+  }
+]
