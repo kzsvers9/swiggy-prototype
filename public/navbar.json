@@ -1,0 +1,31 @@
+[
+    {
+      "className": "text",
+      "navtext": "Home"
+    },
+    {
+      "className": "slash",
+      "navtext": "/"
+    },
+    {
+      "className": "text",
+      "navtext": "Bangalore"
+    },
+    {
+      "className": "slash",
+      "navtext": "/"
+    },
+    {
+      "className": "text",
+      "navtext": "Bannerghatta Main Road"
+    },
+    {
+      "className": "slash",
+      "navtext": "/"
+    },
+    {
+      "className": "high-text",
+      "navtext": "Kitchens of Punjab"
+    }
+  ]
+  
