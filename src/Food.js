@@ -2,7 +2,6 @@ import React from 'react'
 
 function Food(props) {
   return (
-    
      <div key={props.name} className="item-card">
           <div className="food-ctd">
             <div className="food-desc">
