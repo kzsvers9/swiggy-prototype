@@ -1,18 +1,40 @@
 {
-    "items": [
-      {
-        "name": "Raita",
-        "price": "₹ 76",
-        "description": "Serves 1 | A delish side dish made with fresh curd and vegetables.",
-        "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/odr9lgc0xtuxhejrknok" 
-  
-      },
-      {
-        "name": "Gulab Jamun",
-        "price": "₹ 109",
-        "description": "Serves 1 | Sweet and sumptuous dough balls soaked in cinnamon flavoured sugar syrup",
-        "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/vo4btqa8dzjkemkizpcp" 
-     
-      }
-    ]
-  }
+  "items": [
+    {
+      "name": "Raita",
+      "price": 76,
+      "description": "Serves 1 | A delish side dish made with fresh curd and vegetables.",
+      "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/odr9lgc0xtuxhejrknok",
+      "veg": true 
+    },
+    {
+      "name": "Gulab Jamun",
+      "price": 109,
+      "description": "Serves 1 | Sweet and sumptuous dough balls soaked in cinnamon flavoured sugar syrup",
+      "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/vo4btqa8dzjkemkizpcp",
+      "veg": true 
+    },
+    {
+      "name": "Chicken curry rice combo",
+      "price": 160,
+      "description": "Chicken Curry + Rice + Lemon Soda",
+      "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/xa1aj89m03dpr7wa54wy",
+      "veg": false
+    },
+    {
+      "name": "Egg meals",
+      "price": 140,
+      "description": "3 Roti+Half Rice+2pc egg curry+dal+sabji+salad",
+      "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/ntufe7tca7hkvtmhf7wh",
+      "veg": false
+    },
+    {
+      "name": "Premium paneer butter masala roti thali",
+      "price": 341,
+      "description": "Paneer butter masala , 2 nos roti , 2 pcs paneer tikka served with pickle , raita ,gulab jamun , green chutney & salad",
+      "image": "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/jclmnueykpjky5w4fgje",
+      "veg": true 
+    }
+  ]
+}
+

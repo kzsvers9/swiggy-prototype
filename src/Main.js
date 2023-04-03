@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import Food from './Food'
 import MainList from './MainList';
 import MainNavbar from './MainNavbar';
+import Cart from './Cart';
 function Main() {
 
   const [foodItems, setFoodItems] = useState([]);
   const [navItems, setnavItems] = useState([]);
   const [listItems, setlistItems] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [showVegOnly, setShowVegOnly] = useState(false);
   
   useEffect(() => {
       fetch('menu.json')
@@ -29,11 +32,46 @@ useEffect(() => {
     .then(data => setlistItems(data));
 }, []);
       
+const toggleVegOnly = () => {
+  setShowVegOnly(!showVegOnly);
+}
+
+const addToCart = (food) => {
+  setCart([...cart, food]);
+};
+
+const removeFromCart = (food) => {
+  const indexToRemove = cart.findIndex((item) => item.name === food.name);
+  if (indexToRemove !== -1) {
+    const updatedCart = [...cart];
+    updatedCart.splice(indexToRemove, 1);
+    setCart(updatedCart);
+  }
+};
+function clearCart() {
+  setCart([]);
+}
+const removeItemFromCart = (itemToRemove) => {
+  setCart((prevCart) =>
+    prevCart.filter((item) => item.name !== itemToRemove.name)
+  );
+};
+
 const renderFoodItems = () => {
-  if(foodItems.length === 0) return null;
-  return foodItems.map((food, index) => (
-    <Food  key= {index} name={food.name} image={food.image} description={food.description} price={food.price}/>
-  ))
+  if (foodItems.length === 0) return null;
+  const filteredFoodItems = showVegOnly ? foodItems.filter(food => food.veg) : foodItems;
+  return filteredFoodItems.map((food, index) => (
+    <Food
+      key={index}
+      name={food.name}
+      image={food.image}
+      description={food.description}
+      price={food.price}
+      addToCart={() => addToCart(food)}
+      removeFromCart={() => removeFromCart(food)}
+      inCart={cart.some((item) => item.name === food.name)}
+    />
+  ));
 }
 const rendernavItems = () => {
   if(navItems.length === 0) return null;
@@ -125,10 +163,10 @@ const sort = () =>{
           <span className="heart-logo"></span>
           <span className="fav-txt">Favourite</span>
         </div>
-        <div className="veg">
-          <span className="square-logo"></span>
-          <span className="veg-txt">Veg Only</span>
-        </div>
+        <div className="veg" onClick={toggleVegOnly}>
+      <span className="square-logo"></span>
+      <span className="veg-txt">Veg Only</span>
+    </div>
        
         <div className="search-dish">
           <span className="search-logo">
@@ -150,80 +188,16 @@ const recommended = () =>{
     <h2 className="rcd">Recommended</h2>
     <div className="item-no">21 ITEMS</div>
     <div className="food-items">
-    {/* {foodItems.length > 0 && foodItems.map(food => (
-<Food  key= {food.name} name={food.name} image={food.image} description={food.description} price={food.price}/>
-
-))} */}
 {renderFoodItems()}
-      <div className="item-card">
-        <div className="food-ctd">
-          <div className="food-desc">
-            <div className="green-logo">
-            <i className="styles_icon__m6Ujp styles_itemIcon__1LXTw icon-Veg styles_iconVeg__shLxJ" role="presentation" style={{lineHeight: '1.2'}} aria-hidden="true"/>
-            </div>
-            <div className="food-title">
-              <h3 className="heading-food">Premium Paneer Butter Masala  Roti Thali</h3>
-            </div>
-            <div className="food-price">
-              <span className="fd-price"> &#8377; 341</span>
-            </div>
-            <div className="food-igd">
-              Paneer butter masala , 2 nos roti , 2 pcs paneer tikka served with pickle , raita ,gulab jamun , green chutney & salad
-            </div>
-          </div>
-          <div className="food-imgwrap">
-          <div className="food-img"> 
-          <img alt="Premium Paneer Butter Masala Roti Thali" className="styles_itemImage__3CsDL" loading="lazy" width={256} src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/jclmnueykpjky5w4fgje" />
-          </div> 
-          <div className="addbtn-wrap">
-             <div className="addbtn">
-              <div className="addctd">ADD</div>
-             </div>
-          </div>
-          </div>
-        </div>
-        <div className="item-bdr"></div>
-      </div>
-      <div className="item-card">
-        <div className="food-ctd">
-          <div className="food-desc">
-            <div className="green-logo">
-            <i className="styles_icon__m6Ujp styles_itemIcon__1LXTw icon-Veg styles_iconVeg__shLxJ" role="presentation" style={{lineHeight: '1.2'}} aria-hidden="true"/>
-            </div>
-            <div className="food-title">
-              <h3 className="heading-food">Premium Paneer Butter Masala  Roti Thali</h3>
-            </div>
-            <div className="food-price">
-              <span className="fd-price"> &#8377; 341</span>
-            </div>
-            <div className="food-igd">
-              Paneer butter masala , 2 nos roti , 2 pcs paneer tikka served with pickle , raita ,gulab jamun , green chutney & salad
-            </div>
-          </div>
-          <div className="food-imgwrap">
-          <div className="food-img"> 
-          <img alt="Premium Paneer Butter Masala Roti Thali" className="styles_itemImage__3CsDL" loading="lazy" width={256} src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/jclmnueykpjky5w4fgje" />
-          </div> 
-          <div className="addbtn-wrap">
-             <div className="addbtn">
-              <div className="addctd">ADD</div>
-             </div>
-          </div>
-          </div>
-        </div>
-        <div className="item-bdr"></div>
-      </div> 
+
     </div>
   </div>
   )
 }
-const cart = () =>{
+const renderCart = () =>{
   return(
-    <div className="cart">
-        <div className="cart-heading">Cart Empty</div>
-        <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2" className="_3mSQq"/>
-        <div className="cart-desc">Good food is always cooking! Go ahead, order some yummy items from the menu.</div>
-      </div>
+    <Cart cart={cart} clearCart={clearCart} removeItemFromCart={removeItemFromCart} />
+
   )
 }
 const mainContent = () =>{  return(
@@ -231,13 +205,6 @@ const mainContent = () =>{  return(
   <div className="mainn-navbar">
     {rendernavItems()}
     
-    {/* <span className="text">Home</span>
-    <span className="slash">/</span>
-    <span className="text">Bangalore</span>
-    <span className="slash">/</span>
-    <span className="text">Bannerghatta Main Road</span>
-    <span className="slash">/</span>
-    <span className="high-text">Kitchens of Punjab</span> */}
   </div>
   <div className="restaurant-card">
     {resInfo()}
@@ -258,7 +225,7 @@ const mainContent = () =>{  return(
     </div>
   </div>
     <div className="cart-empty">
-      {cart()}
+      {renderCart()}
     </div>
   
   </div>
