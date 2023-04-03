@@ -18,7 +18,7 @@ function Cart({ cart, clearCart, removeItemFromCart }) {
     <li key={index} className="cart-item">
       <div className="cart-item-info">
         <div className="cart-item-name">{item.name}</div>
-        <div className="cart-item-price">${item.price.toFixed(2)}</div>
+        <div className="cart-item-price">₹{item.price.toFixed(2)}</div>
       </div>
       <div className="cart-item-quantity">
        
@@ -40,7 +40,7 @@ function Cart({ cart, clearCart, removeItemFromCart }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+     console.log(data);
         alert("Your order has been placed!");
       })
       .catch((error) => console.error(error));
@@ -54,7 +54,7 @@ function Cart({ cart, clearCart, removeItemFromCart }) {
           <div className="cart-heading">Cart</div>
           <ul className="cart-items">{cartList}</ul>
           <div className="cart-total">
-            Total: <span className="cart-total-price">${totalPrice}</span>
+            Total: <span className="cart-total-price">₹{totalPrice}</span>
           </div>
           <button className="cart-checkout-btn" onClick={handleCheckout}>Checkout</button>
         </div>

@@ -11,6 +11,9 @@ function Main() {
   const [listItems, setlistItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [showVegOnly, setShowVegOnly] = useState(false);
+
+  let vegClass='veg-txt ';
+  if(showVegOnly)vegClass+='vegclicked';
   
   useEffect(() => {
       fetch('menu.json')
@@ -69,7 +72,7 @@ const renderFoodItems = () => {
       price={food.price}
       addToCart={() => addToCart(food)}
       removeFromCart={() => removeFromCart(food)}
-      inCart={cart.some((item) => item.name === food.name)}
+      inCart={()=> cart.some((item) => item.name === food.name)}
     />
   ));
 }
@@ -154,6 +157,7 @@ const resInfo = () =>{
   </div>
   )
 }
+
 const sort = () =>{
   return(
     <div className="sort">
@@ -165,7 +169,7 @@ const sort = () =>{
         </div>
         <div className="veg" onClick={toggleVegOnly}>
       <span className="square-logo"></span>
-      <span className="veg-txt">Veg Only</span>
+      <span className={vegClass}>Veg Only</span>
     </div>
        
         <div className="search-dish">

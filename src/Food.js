@@ -1,10 +1,20 @@
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+
 
 function Food(props) {
-  const [count, setCount] = useState(0);
+  const initial=0;
+  const [count, setCount] = useState(initial);
 
+
+
+useEffect(() => {
+  if(!props.inCart(props.name))
+  setCount(0);
+}, [props.inCart(props.name)])
+  
   const handleIncrement = () => {
     setCount(count + 1);
     addToCart();
@@ -41,7 +51,7 @@ function Food(props) {
     addToCart();
     setCount(count + 1);
   };
-
+console.log(props.inCart(props.name))
   return (
     <div key={props.name} className="item-card">
       <div className="food-ctd">
@@ -74,8 +84,11 @@ function Food(props) {
           </div>
          
           <div className="addbtn-wrap">
-  {count === 0 ? (
-    <button className="addctd addbtn" onClick={handleAddToCart}>ADD</button>
+  {!props.inCart(props.name) ?  (
+  <>
+   <button className="addctd addbtn" onClick={handleAddToCart}>ADD</button>
+  </>
+  
   ) : (
     <div className="addbtn">
 
