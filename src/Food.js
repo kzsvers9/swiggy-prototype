@@ -1,57 +1,59 @@
-
-
-import React, { useEffect, useState } from 'react';
-
-
+import React, { useState, useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "./redux/Cart/Cart.actions";
 
 function Food(props) {
-  const initial=0;
+  const initial = 0;
   const [count, setCount] = useState(initial);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  const itemInCart = cart.some((item) => item.name === props.name);
 
 
+  useEffect(() => {
+    if (!itemInCart) {
+      setCount(initial);
+    }
+  }, [itemInCart]);
 
-useEffect(() => {
-  if(!props.inCart(props.name))
-  setCount(0);
-}, [props.inCart(props.name)])
-  
+
   const handleIncrement = () => {
     setCount(count + 1);
-    addToCart();
+    addToCartHandler();
   };
 
   const handleDecrement = () => {
     if (count > 0) {
       setCount(count - 1);
-      removeFromCart();
+      removeFromCartHandler();
     }
   };
 
-  const addToCart = () => {
+  const addToCartHandler = () => {
     const item = {
       name: props.name,
       price: props.price,
       image: props.image,
       count: count + 1,
     };
-    props.addToCart(item);
+    dispatch(addToCart(item));
   };
 
-  const removeFromCart = () => {
+  const removeFromCartHandler = () => {
     const item = {
       name: props.name,
       price: props.price,
       image: props.image,
       count: count - 1,
     };
-    props.removeFromCart(item);
+    dispatch(removeFromCart(item));
   };
 
   const handleAddToCart = () => {
-    addToCart();
+    addToCartHandler();
     setCount(count + 1);
   };
-console.log(props.inCart(props.name))
   return (
     <div key={props.name} className="item-card">
       <div className="food-ctd">
@@ -60,7 +62,7 @@ console.log(props.inCart(props.name))
             <i
               className="styles_icon_m6Ujp styles_itemIcon1LXTw icon-Veg styles_iconVeg_shLxJ"
               role="presentation"
-              style={{ lineHeight: '1.2' }}
+              style={{ lineHeight: "1.2" }}
               aria-hidden="true"
             />
           </div>
@@ -82,22 +84,26 @@ console.log(props.inCart(props.name))
               src={props.image}
             />
           </div>
-         
-          <div className="addbtn-wrap">
-  {!props.inCart(props.name) ?  (
-  <>
-   <button className="addctd addbtn" onClick={handleAddToCart}>ADD</button>
-  </>
-  
-  ) : (
-    <div className="addbtn">
 
-      <button className="addctd add-minus" onClick={handleDecrement}>-</button>
-      <span className="addctd add-count">{count}</span>
-      <button className="addctd add-plus" onClick={handleIncrement}>+</button>
-    </div>
-  )}
-</div>
+          <div className="addbtn-wrap">
+            {!itemInCart ? (
+              <>
+                <button className="addctd addbtn" onClick={handleAddToCart}>
+                  ADD
+                </button>
+              </>
+            ) : (
+              <div className="addbtn">
+                <button className="addctd add-minus" onClick={handleDecrement}>
+                  -
+                </button>
+                <span className="addctd add-count">{count}</span>
+                <button className="addctd add-plus" onClick={handleIncrement}>
+                  +
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="item-bdr"></div>

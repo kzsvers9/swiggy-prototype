@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-
+import { useSelector } from 'react-redux';
 
 
    
 function Navbar() {
-
-
+  const cart = useSelector((state) => state.cart.cart);
+  const totalCount = cart.length;
   const left = () => {
     return(
       <div className="left">
@@ -126,7 +126,7 @@ function Navbar() {
           </div>
         </li>
         <li>
-          <div className="nav-item">
+          {/* <div className="nav-item">
             <a href="">
               <svg viewBox="-1 0 37 32" height="20" width="20" fill="#E9DCC9">
                 <path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z" 
@@ -134,7 +134,22 @@ function Navbar() {
               </svg>
               <span>Cart</span>
             </a>
-          </div>
+          </div> */}
+           <div className="nav-item">
+          <a href="">
+            <svg viewBox="-1 0 37 32" height="20" width="20" fill="#E9DCC9">
+              <path
+                d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"
+                style={{ stroke: 'black', strokeWidth: '2px', fill: 'white' }}
+              ></path>
+              <text x="50%" y="70%" textAnchor="middle" fill="black" fontSize="24" >
+          
+                {totalCount}
+              </text>
+            </svg>
+            <span>Cart</span>
+          </a>
+        </div>
         </li>
       </ul>
     </div>
