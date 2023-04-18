@@ -432,6 +432,11 @@ padding-right: 15px;
 text-transform: capitalize;
 font-weight: 600;
 }
+
+.vegclicked{
+  color: #60b246;
+}
+
 .search-dish .search-logo {
   font-size: 16px;
   font-weight: 700;
@@ -646,6 +651,35 @@ background-color: #fff;
   height: 100%;
   cursor: pointer;
  }
+ .addbtn .add-plus{
+position: absolute;
+right: 0;
+top: 0;
+display: inline-block;
+width: 33%;
+cursor: pointer;
+font-size: 1.5rem;
+font-weight: 600;
+ }
+ .addbtn .add-minus{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 33%;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+ .addbtn .add-count{
+  display: inline-block;
+position: absolute;
+left: 33%;
+top: 0;
+width: 33%;
+cursor: pointer;
+ }
 .cart-empty .cart{
   height: 100%;
   background: transparent !important;
@@ -654,7 +688,7 @@ background-color: #fff;
 }
 .cart .cart-heading{
   color: #7e808c;
-  letter-spacing: -.3px;
+  letter-spacing: 3px;
   font-size: 32px;
   font-weight: 600;
 }
@@ -673,6 +707,77 @@ font-weight: 300;
 max-width: 218px;
 }
 
+.cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #d4d5d9;
+}
+
+.cart-item-name {
+  font-size: 16px;
+  color: #3e4152;
+  margin-bottom: 5px;
+}
+.cart-item-price {
+  font-size: 14px;
+  color: #3e4152;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #3e4152;
+  border-bottom: 1px solid #d4d5d9;
+}
+.cart-total-price {
+  font-weight: bold;
+}
+.cart-checkout-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #fc8019;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+}
+.remove-btn {
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 10px;
+  
+}
+.remove-btn:hover {
+  background-color: #ccc;
+}
 /* footer section */
 .footer {
   padding: 0 20px;
