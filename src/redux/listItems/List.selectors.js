@@ -1,0 +1,1 @@
+export const listItemsSelector = (state) => state.list.listItems;

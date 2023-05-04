@@ -3,18 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFoodItems } from "./redux/Fooditems/Food.actions";
 import { fetchNavItems } from "./redux/NavItems/Nav.actions";
 import { fetchListItems } from "./redux/listItems/List.actions";
-
+import { foodItemsSelector } from "./redux/Fooditems/Food.selectors";
+import { listItemsSelector } from "./redux/listItems/List.selectors";
+import { navItemsSelector } from "./redux/NavItems/Nav.selectors";
 import Food from "./Food";
 import MainList from "./MainList";
 import MainNavbar from "./MainNavbar";
 import Cart from "./Cart";
 function Main() {
-  const foodItems = useSelector((state) => state.food.foodItems);
-  const navItems = useSelector((state) => state.nav.navItems);
-  const listItems = useSelector((state) => state.list.listItems);
-
+  const foodItems = useSelector(foodItemsSelector);
+  const navItems = useSelector(navItemsSelector);
+  const listItems = useSelector(listItemsSelector);
   const [showVegOnly, setShowVegOnly] = useState(false);
-  const cart = useSelector((state) => state.cart.cart);
   let vegClass = "veg-txt ";
   if (showVegOnly) vegClass += "vegclicked";
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function Main() {
   }, [dispatch]);
 
   const toggleVegOnly = () => {
-    setShowVegOnly(!showVegOnly);
+    setShowVegOnly((previousState) => !previousState);
   };
 
   const renderFoodItems = () => {
@@ -47,7 +47,6 @@ function Main() {
         image={food.image}
         description={food.description}
         price={food.price}
-        inCart={() => cart.some((item) => item.name === food.name)}
       />
     ));
   };

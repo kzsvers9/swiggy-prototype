@@ -1,0 +1,1 @@
+export const foodItemsSelector = (state) => state.food.foodItems;

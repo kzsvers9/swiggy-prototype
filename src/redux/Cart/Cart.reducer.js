@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART, REMOVE_ITEM_FROM_CART, IN_CART } from './Cart.types';
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART, REMOVE_ITEM_FROM_CART } from './Cart.types';
 
 const INITIAL_STATE = {
   cart: [],

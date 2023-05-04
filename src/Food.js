@@ -1,22 +1,21 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "./redux/Cart/Cart.actions";
+import { cartSelector } from "./redux/Cart/Cart.selectors";
 
 function Food(props) {
   const initial = 0;
   const [count, setCount] = useState(initial);
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector(cartSelector);
   const itemInCart = cart.some((item) => item.name === props.name);
-
 
   useEffect(() => {
     if (!itemInCart) {
       setCount(initial);
     }
   }, [itemInCart]);
-
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -35,7 +34,6 @@ function Food(props) {
       name: props.name,
       price: props.price,
       image: props.image,
-      count: count + 1,
     };
     dispatch(addToCart(item));
   };
@@ -45,7 +43,6 @@ function Food(props) {
       name: props.name,
       price: props.price,
       image: props.image,
-      count: count - 1,
     };
     dispatch(removeFromCart(item));
   };

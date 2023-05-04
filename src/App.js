@@ -1,17 +1,21 @@
+import "./App.css";
+import { Routes, Route } from "react-router";
 
-import './App.css';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import Main from './Main';
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import Main from "./Main";
+import Thankyou from "./Thankyou";
 
 function App() {
   return (
     <>
-   <Navbar/>
-   <Main/>
-   <Footer/>
-   </>
-
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/thank-you" element={<Thankyou />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
