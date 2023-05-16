@@ -10,7 +10,7 @@ import Food from "./Food";
 import MainList from "./MainList";
 import MainNavbar from "./MainNavbar";
 import Cart from "./Cart";
-function Main() {
+function Main({showToast}) {
   const foodItems = useSelector(foodItemsSelector);
   const navItems = useSelector(navItemsSelector);
   const listItems = useSelector(listItemsSelector);
@@ -169,7 +169,7 @@ function Main() {
     );
   };
   const renderCart = () => {
-    return <Cart />;
+    return <Cart showToast={showToast}/>;
   };
   const mainContent = () => {
     return (

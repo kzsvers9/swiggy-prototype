@@ -22,9 +22,15 @@ export const fetchNavItems = () => {
   return (dispatch) => {
     dispatch(fetchNavItemsRequest());
     fetch("navbar.json")
-      .then((response) => response.json())
+  
+      .then((response) =>
+      // console.log(response)
+       response.json())
+    
       .then((data) => {
+        console.log(data)
         dispatch(fetchNavItemsSuccess(data));
+
       })
       .catch((error) => {
         dispatch(fetchNavItemsFailure(error.message));

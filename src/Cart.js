@@ -9,7 +9,9 @@ import {
   cartIsEmptySelector,
 } from "./redux/Cart/Cart.selectors";
 
-function Cart() {
+
+
+function Cart({showToast}) {
   const cart = useSelector(cartSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,10 +57,15 @@ function Cart() {
           total: totalPrice,
         };
         localStorage.setItem("orderInfo", JSON.stringify(orderInfo));
-        alert("Your order has been placed!");
+        showToast();
+        // alert("Your order has been placed!");
+      
+        console.log("async");
         navigate("/thank-you");
+
       })
       .catch((error) => console.error(error));
+      console.log("clear");
     dispatch(clearCart());
   };
 
